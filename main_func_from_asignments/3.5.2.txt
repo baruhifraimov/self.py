@@ -1,0 +1,3 @@
+letter_guess = input('Guess a letter: ')
+letter_sum = len(letter_guess)
+print(letter_sum*'_ ')

@@ -1,0 +1,20 @@
+def join_letter(list_join):
+    combination_list = ' -> '.join(list_join)
+    return combination_list
+
+
+def try_update_letter_guessed(letter_guessed, old_letters_guessed):
+    """
+    :param letter_guessed : :param old_letters_guessed: :return: checks if the word is located in the list,
+    or is a special keyword or if it accedes beyond or equal to 2 letters
+    """
+    if letter_guessed.isalpha() == 1 and len(letter_guessed) == 1 and (letter_guessed.lower() in old_letters_guessed) == 0:
+        old_letters_guessed += [letter_guessed.lower()]
+        return print('True')
+    elif letter_guessed.isalpha() == 0 or len(letter_guessed) >= 2 or (letter_guessed.lower() in old_letters_guessed) == 1:
+        print('X \n ', join_letter(sorted(old_letters_guessed, key=str)))
+        return print('False')
+
+
+old_letters = ['a', 'p', 'c', 'f']
+try_update_letter_guessed('A', old_letters)

@@ -1,0 +1,16 @@
+def check_valid_input(letter_guessed, old_letters_guessed):
+    """
+    :param letter_guessed string:
+    :param old_letters_guessed a list:
+    :return: checks if the word is located in the list, or is a special keyword or if it accedes beyond or equal to 2 letters
+    """
+    if letter_guessed.isalpha() == 1 and len(letter_guessed) == 1 and (letter_guessed in old_letters_guessed) == 0:
+        return True
+    elif letter_guessed.isalpha() == 0 or len(letter_guessed) >= 2 or (letter_guessed in old_letters_guessed) == 1:
+        return False
+
+
+input_word = str(input('Enter a single word: \n'))
+list_of_words = ['a', 'b', 'c']
+print(check_valid_input(input_word, list_of_words))
+list_of_words = list(input_word)
