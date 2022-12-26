@@ -1,0 +1,102 @@
+def new_list(chose, a_list):
+    if chose == '1':
+        print('You chose option 1\n')
+        print(a_list)
+
+    elif chose == '2':
+        print('You chose option 2\n')
+        count_s = 0
+        for count in a_list:
+            count_s += 1
+        print(count_s)
+
+    elif chose == '3':
+        s = 0
+        print('You chose option 3\n')
+        comp = str(input('Enter your item:\n').lower())
+        if a_list.count(comp) >= 1:
+            print('\nThe product: "'+comp+'" is located in the list!')
+        else:
+            print('\nThe product: "'+comp+'" is not in the list!')
+
+    elif chose == '4':
+        print('You chose option 4\n')
+        check_item = str(input('Enter your item:\n'))
+        total = 0
+        for i in range(len(a_list)):
+            if check_item.lower() in a_list[i - 1].lower():
+                total += 1
+        if total >= 1:
+            print('There is ' + str(total) + ' "' + check_item + '" in the list')
+        else:
+            print('The item ' + check_item + ' is not on the list')
+
+    elif chose == '5':
+        print('You chose option 5\n')
+        dlt_item = str(input('Enter your item:\n')).lower()
+        if len(dlt_item) >= 1:
+            for i in range(len(a_list)):
+                if dlt_item in a_list[i].lower():
+                    a_list.pop(i)
+            return a_list
+        else:
+            print('Invalid input\n')
+        return False
+
+    elif chose == '6':
+        print('You chose option 6\n')
+        add_item = str(input('Enter your item:\n'))
+        a_list.append(add_item)
+        return a_list
+
+    elif chose == '7':
+        bad_list = []
+        print('You chose option 7\n')
+        for i in range(len(a_list)):
+            if not (any(map(str.isalpha, a_list[i]))) or len(str(a_list[i])) < 3:
+                bad_list.append(a_list[i])
+
+        if len(bad_list) >= 1:
+            return bad_list
+        else:
+            print('The list is valid')
+
+    elif chose == '8':
+        print('You chose option 8\n')
+        new_list = []
+        a_list.sort(key=str.lower)
+        for i in range(len(a_list)):
+            if a_list[i].lower() != a_list[i - 1].lower():
+                new_list.append(a_list[i].lower())
+        a_list.clear()
+        for i in range(len(new_list)):
+            a_list.insert(i, new_list[i])
+        print(a_list)
+        return a_list
+
+    elif chose == '9':
+        print('You chose option 9\n')
+        print('GOODBYE\n')
+        exit()
+    else:
+        print('INVALID CHOICE')
+
+
+def option_list():
+    a = str(input('\n[1] Print list of the groceries\n' +
+                  '[2] Print the amount of the groceries in the list\n' +
+                  '[3] Check if the specific groceries is in the list\n' +
+                  '[4] Check the amount of the specific groceries that is located in the list\n' +
+                  '[5] Remove  specific item from your list\n' +
+                  '[6] Add an item to the list\n' +
+                  '[7] Print all the invalid items in your list\n' +
+                  '[8] Remove all the duplicates in your list\n' +
+                  '[9] EXIT\n'))
+    new_list(a, n_list)
+    while a != '9':
+        return option_list()
+
+
+m_list = input('Enter a list:\n')
+n_list = m_list.split(',')
+option_list()

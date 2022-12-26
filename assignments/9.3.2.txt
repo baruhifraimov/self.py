@@ -1,0 +1,32 @@
+def my_mp4_playlist(file_path, new_song):
+    """
+    replacing third song title with the user input
+    :param file_path: user file path
+    :param new_song: the new song title
+    :return: returns a re-written file with the new song with at least 3 lines of text
+    """
+    context_file = open(file_path, 'r')  # opening the file
+    desc_file = context_file.readlines()  # outputting the context of the file as list
+    context_file.close()  # closing the file
+    some = ''.join(desc_file)
+    one = some.split('\n')
+    two = list()
+    for i in range(len(one)):
+        two.append(one[i].split(';'))
+    if len(two) >= 3:  # checks if we got more/equals to three lines
+        two[2][0] = new_song  # condition == True then adding the new song
+    else:
+        two.append(['\n'])  # condition == False, adding lines until equals to 3
+
+    new_text = ''
+    for x in two:
+        new_text += '\n' + ';'.join(x)
+        # converting list as string by separating each word with ';'
+        # and each line with operator '\n'
+
+    with open(r'c:\new\9.1.2.txt', 'w+') as hadash:
+        hadash.write(new_text)
+        hadash.close()
+
+
+my_mp4_playlist(r'c:\new\9.1.2.txt', 'Python Love Story')

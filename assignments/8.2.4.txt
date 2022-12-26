@@ -1,0 +1,17 @@
+def sort_anagrams(list_of_strings):
+    checksum = {}
+
+    for i in list_of_strings:
+        new_list = ''.join(sorted(i))
+        if new_list in checksum:
+            checksum[new_list].append(i)
+        else:
+            checksum[new_list] = [i]
+
+    return list(checksum.values())
+
+
+list_of_words = ['deltas', 'retainers', 'desalt', 'pants', 'slated', 'generating', 'ternaries', 'smelters', 'termless',
+                 'salted', 'staled', 'greatening', 'lasted', 'resmelts']
+print(sort_anagrams(list_of_words))
+

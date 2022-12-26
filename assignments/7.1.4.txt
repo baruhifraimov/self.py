@@ -1,0 +1,13 @@
+alist = []
+
+
+def squared_numbers(start, stop):
+    i = start
+    while i <= stop:
+        total = i * i
+        i += 1
+        alist.append(total)
+    return alist
+
+
+print(squared_numbers(-3, 3))

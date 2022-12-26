@@ -1,0 +1,14 @@
+phrase = input ('please enter a string:')
+f_n = phrase.find(phrase[1])
+phrase = phrase[0:f_n+1]+phrase[f_n+1:].replace(phrase[1],'e',-1)
+print(phrase)
+
+print('THE SECOND LETTER GAME. \n\n\n\nThe game will pick the second letter and give it a new \nReplacement that only you will choose! \nDisclosure:"It will not change the second letter"')
+phrase = input ('\nplease enter a string: ')
+f_n = phrase.find(phrase[1])
+word=phrase[1]
+print ('\nThe word: ',word)
+x=input('Enter the word you want to be replaced with:  ')
+print ('\nGonna be replaced with: ',x)
+phrase = phrase[0:f_n+1]+phrase[f_n+1:].replace(phrase[1],x,-1)
+print('\n', phrase)

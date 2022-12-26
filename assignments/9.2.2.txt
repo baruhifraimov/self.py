@@ -1,0 +1,10 @@
+def copy_file_content(source, destination):
+    likro = open(source, 'r')
+    context_read = likro.readlines()
+    context_read = ''.join(context_read)
+    likro.close()
+    with open(destination, 'w+') as latik:
+        latik.write(context_read)
+
+
+copy_file_content(r'DIRECTORY1', r'DIRECTORY2')

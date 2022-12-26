@@ -1,0 +1,16 @@
+def count_chars(my_str):
+    """
+The program will count the chars and print the amount of the chars
+    :param my_str: a string input from the user 
+    :return: returns a dict with a char key and amount value
+    """
+    fixed = list((magic_str.replace(' ', '')))  # removes spaces
+    count_dict = dict()  # converts count_dict to dictionary type
+    for i in range(len(fixed)):
+        s = str(fixed.count(fixed[i]))  # sums the amount of char in string 'fixed'
+        count_dict[fixed[i]] = int(s)  # defining fixed[i] as a key, and s as a value
+    return count_dict  # returns the value
+
+
+magic_str = "abra cadabra"
+print(count_chars(magic_str))

@@ -1,0 +1,11 @@
+import string
+guess = input ('Guess a letter: ')
+num = len(guess)
+if any(i in guess.lower() for i in string.punctuation) and (num > 1):
+    print('E3')
+elif any(i in guess.lower() for i in string.punctuation):
+    print('E2')
+elif num > 1:
+    print('E1')
+else:
+    print(guess.lower())

@@ -1,0 +1,18 @@
+def show_hidden_word(secret_word, old_letters_guessed):
+
+    word_check = []
+    for i in range(len(secret_word)):
+        for j in range(len(old_letters_guessed)):
+            if secret_word[i] == old_letters_guessed[j - 1]:
+                word_check.append(old_letters_guessed[j - 1])
+    for i in range(len(secret_word)):
+        if word_check[i] != secret_word[i]:
+            word_check.insert(i, '_')
+    player_result = ' '.join(word_check)
+
+    print(player_result)
+
+
+word = "mammals"
+letters_guessed = ['s', 'p', 'j', 'i', 'm', 'k']
+show_hidden_word(word, letters_guessed)

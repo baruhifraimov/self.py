@@ -1,0 +1,18 @@
+def choose_word(file_path, index):
+    context_file = open(file_path, 'r')  # opening the file
+    desc_file = context_file.readlines()  # outputting the context of the file as list
+    context_file.close()  # closing the file
+    some = ''.join(desc_file).strip().split()  # converting to string and listing each word into a list
+    complist, duplist = [], []
+    for i in some:
+        if i not in complist:  # checks if the value is in the complist
+            complist.append(i)  # if not, add the value
+        else:
+            duplist.append(i)  # if yes, add the value to the duplist
+    while len(some) < index:
+        index -= len(some)
+    #  if the index is bigger then the length of the file, reset it
+    return len(some) - len(duplist), some[index - 1]
+
+
+print(choose_word(r'c:\new\9.4.1.txt', 15))

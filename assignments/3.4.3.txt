@@ -1,0 +1,13 @@
+word = input('please enter a string:')
+count = int(len(word))
+division = int (((count//2) -1))
+con = count%2 == 0 
+
+
+while con:
+ print (word.upper()[0:division+1]+word[division+1:count])
+ break
+else:
+
+ print (word[0:division+1]+word.upper()[division+1:count])
+ 

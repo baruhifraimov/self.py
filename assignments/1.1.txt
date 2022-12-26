@@ -1,0 +1,78 @@
+import random
+import types
+import math
+
+MAX_TRIES = 6
+word_length=int(random.randrange(5,11,1))
+
+HANGMAN_ASCII_ART = """ WELCOME TO THE HANGMAN GAME
+
+  _    _                                         
+ | |  | |                                        
+ | |__| | __ _ _ __   __ _ _ __ ___   __ _ _ __  
+ |  __  |/ _` | '_ \ / _` | '_ ` _ \ / _` | '_ \ 
+ | |  | | (_| | | | | (_| | | | | | | (_| | | | |
+ |_|  |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|
+                      __/ |                      
+                     |___/
+
+
+"""
+
+print (HANGMAN_ASCII_ART , MAX_TRIES)
+
+print('the word length is:',word_length)
+
+'''
+print("""
+    x-------x
+""")
+print("""
+    x-------x
+    |
+    |
+    |
+    |
+    |
+""")
+print("""
+    x-------x
+    |       |
+    |       0
+    |
+    |
+    |
+""")
+print("""
+    x-------x
+    |       |
+    |       0
+    |       |
+    |
+    |
+""")
+print("""
+    x-------x
+    |       |
+    |       0
+    |      /|\\
+    |
+    |
+""")
+print("""
+    x-------x
+    |       |
+    |       0
+    |      /|\\
+    |      /
+    |
+""")
+print("""
+    x-------x
+    |       |
+    |       0
+    |      /|\\
+    |      / \\
+    |
+""")
+'''

@@ -1,0 +1,6 @@
+def sort_prices(list_of_tuples):
+    return sorted(list_of_tuples, key=lambda price: float(price[1]))
+
+
+products = [('milk', '5.5'), ('candy', '2.5'), ('bread', '9.0')]
+print(sort_prices(products))

@@ -1,0 +1,19 @@
+def func(num1, num2):
+    """
+    The functions summing up two of the parameters
+    :param num1:
+    :param num2:
+    :return: the sum of both numbers
+    """
+    num1 += num2
+    # sums up both of the variables
+    print(num1)
+    # printing the value of num1
+
+
+def main():
+    func(1, 2)
+
+
+if __name__ == "__main__":
+    main()

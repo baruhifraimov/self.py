@@ -1,0 +1,15 @@
+def arrow(my_char, max_length):
+    mahrozet = []
+    for i in range(0, max_length):
+        mahrozet += my_char
+        print(''.join(mahrozet))
+
+    i = 1
+    while i < max_length:
+        mahrozet.pop(0)
+        i += 1
+        print(''.join(mahrozet))
+    return ''
+
+
+print(arrow('*', 5))

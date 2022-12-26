@@ -1,0 +1,49 @@
+from datetime import date
+
+
+def year():
+    """
+    returns us the current year
+    :return:
+    """
+    today = date.today()
+    today = str(today)
+    today = today.replace('-', '')
+    today = today.partition('12')
+    today = int(today[0])
+    return today
+
+
+def choosing_list(num, in_milon):
+    """
+    :param num: user input for the list option
+    :param dict: user dictionary that is pre-defined
+    :return: returns the value per user choosing
+    """
+    if num == 1:
+        return in_milon['first_name']
+    elif num == 2:
+        return in_milon['birthdate']
+    elif num == 3:
+        return in_milon['hobbies']
+    elif num == 4:
+        last_hobie = in_milon['hobbies'][0].split(',')[2]
+        return last_hobie.strip()
+    elif num == 5:
+        in_milon['hobbies'].append('Cooking')
+        return in_milon['hobbies']
+    elif num == 6:
+        maria_date = in_milon['birthdate']
+        maria_date = maria_date.replace('.', '')
+        maria_date = maria_date.rpartition('03')
+        return maria_date
+    elif num == 7:
+        in_milon['age'] = str(year() - int(in_milon['birthdate'][2]))
+        return in_milon['age']
+    else:
+        print('Wrong list')
+
+
+milon = {'first_name': 'Mariah', 'last_name': 'Carey', 'birthdate': '27.03.1970', 'hobbies': ['Sing, Compose, Act']}
+user_num = int(input('Enter your choosing:\n'))
+print(choosing_list(user_num, milon))

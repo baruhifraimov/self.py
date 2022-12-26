@@ -1,0 +1,23 @@
+def who_is_missing(file_name):
+    likro = open(file_name, 'r')
+    context_read = likro.readlines()
+    likro.close()
+    context_read = ','.join(context_read)
+    context_read = context_read.split(',')
+    context_read.sort()
+    compare = list()
+    for i in range(int(context_read[0]), int(context_read[-1])+1):
+        compare.append(str(i))
+    diff = list()
+    for i in range(len(compare)):
+        if compare[i] not in context_read:
+            diff.append(compare[i])
+        else:
+            pass
+    with open(r'NEW_DIRECTORY', 'w+') as hadash:
+        hadash.write(''.join(diff))
+
+
+
+who_is_missing(r'DIRECTORY')
+

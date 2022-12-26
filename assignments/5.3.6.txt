@@ -1,0 +1,16 @@
+def fix_age(age):
+    return 0
+
+
+def filter_teens(a=13, b=13, c=13):
+    if 13 <= a <= 19 and a != 15 and a != 16:
+        a = fix_age(a)
+    if 13 <= c <= 19 and c != 15 and c != 16:
+        c = fix_age(c)
+    if 13 <= b <= 19 and b != 15 and b != 16:
+        b = fix_age(b)
+
+    return a + b + c
+
+
+print(filter_teens(1, 2, 3))

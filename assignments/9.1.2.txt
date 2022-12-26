@@ -1,0 +1,46 @@
+def sort_file(file1):
+    read = ' '.join(file1)
+    mode1 = read.split()
+    mode1.sort()
+    new_mode = list()
+    for i in range(len(mode1)):
+        if mode1[i] != mode1[i - 1]:
+            new_mode.append(mode1[i])
+    return new_mode
+
+
+def rev(file1):
+    reversed_file = list()
+    conv_file = ' '.join(file1)
+    n_conv_file = conv_file.split('\n')
+    for i in range(len(file1)):
+        reversed_file.append(n_conv_file[i][::-1])
+    reversed_file = ' '.join(reversed_file)
+    return reversed_file
+
+
+def last(file1):
+    user_chose = int(input('Enter line:\n'))
+    if user_chose >= len(desc_file):
+        return False
+    else:
+        return file1[user_chose]
+
+
+def user_input(num):
+    if num == 1:
+        print(sort_file(desc_file))
+    elif num == 2:
+        print(rev(desc_file))
+    elif num == 3:
+        print(last(desc_file))
+    else:
+        print('Invalid number')
+        return False
+
+
+context_file = open(r'c:\new\9.1.2.txt', 'r')
+desc_file = context_file.readlines()
+user_answer = input('Enter:\n')
+user_input(int(user_answer))
+

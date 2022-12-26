@@ -1,0 +1,11 @@
+print('Welcome to the PIG BRICKS game\n')
+
+bricks1 = int (input ('Pig 1: how many bricks?:\n'))
+bricks2 = int (input ('Pig 2: how many bricks?:\n'))
+bricks3 = int (input ('Pig 3: how many bricks?:\n'))
+brickssum = int (bricks1 + bricks2 + bricks3)
+spare=brickssum%3
+print('sum of bricks:',bricks1+bricks2+bricks3)
+print('Equal distribution between all three pigs is:',brickssum/3)
+print('Spare bricks that was not distrubited:',spare)
+print('Is there bricks left?:',bool(spare))

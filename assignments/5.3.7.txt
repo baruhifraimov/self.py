@@ -1,0 +1,11 @@
+def chocolate_maker(small, big, x):
+    small *= 1
+    big *= 5
+    length = small + big
+    if (small >= (x % 5)) and length >= x:
+        return True
+    else:
+        return False
+
+
+print (chocolate_maker(3, 2, 10))

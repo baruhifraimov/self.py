@@ -1,0 +1,27 @@
+def inverse_dict(my_dict):
+    """
+    :param: my_dict: user input in type dict
+    :return: returns reversed keys and values, if key is the same, its combined
+    """
+    new_dict = dict()
+    # converting to dict
+    for new_value in course_dict:
+        new_key = course_dict[new_value]
+        # adding course_dict values to new_key variable
+        # converting course_dict keys to variable as new_value
+        if new_key in new_dict.keys():
+            new_dict[new_key] += [new_value]
+            # if new_key is in use:
+            # adding new_dict keys via new_key variable
+            # adding new_dict values via new_value variable
+            new_dict[new_key].sort()
+            # sorting values in key str
+        else:
+            new_dict[new_key] = [new_value]
+            # if key is not in use
+            # adding value new_value to key new_key
+    return new_dict
+
+
+course_dict = {'love': 3, 'I': 3, 'self.py!': 2}
+print(inverse_dict(course_dict))

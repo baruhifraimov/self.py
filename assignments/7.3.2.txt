@@ -1,0 +1,18 @@
+def show_hidden_word(secret_word, old_letters_guessed):
+
+    word_check = []
+    for i in range(len(secret_word)):
+        for j in range(len(old_letters_guessed)):
+            if secret_word[i] == old_letters_guessed[j - 1]:
+                word_check.append(old_letters_guessed[j - 1])
+
+    if len(word_check) == len(secret_word):
+        print('True')
+    else:
+        print('False')
+
+
+
+word = "yes"
+letters_guessed = ['d', 'g', 'e', 'i', 's', 'k', 'y']
+show_hidden_word(word, letters_guessed)

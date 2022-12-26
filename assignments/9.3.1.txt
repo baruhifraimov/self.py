@@ -1,0 +1,43 @@
+def my_mp3_playlist(file_path):
+    context_file = open(file_path, 'r')
+    desc_file = context_file.readlines()
+
+    # number of songs
+    list_length = len(desc_file)  # gives the length of lines in the text file
+
+    some = ''.join(desc_file)
+    one = some.split('\n')  # splitting the rows into a list by func \n
+    two = list()
+    for i in range(len(one)):
+        two.append(one[i].split(';'))  # adding each list and separating them by ';'
+
+    # searching for the longest song
+    timer_count = 0
+    for i in range(len(two)):
+        if timer_count < int((two[i][2].split(':'))[0]):
+            timer_count = int((two[i][2].split(':'))[0])  # comparing numbers, "who is the biggest".
+            name = two[i][0]  # inputting the value where the biggest number is located
+        else:
+            pass
+
+    # gives you the value of the most listed song in the list
+    mafteah = {}
+    for i in range(len(two)):
+        mafteah[two[i][1]] = ''  # creating a dict with songs as a keys
+
+    for keys in mafteah:
+        for i in range(len(two)):
+            if keys == two[i][1]:
+                mafteah[keys] += 'X'  # if the key is the same as the value, add the letter X into the key
+    most_song = (max(mafteah, key=mafteah.get))  # outputting the key with the max value
+    return name, list_length, most_song
+
+
+print(my_mp3_playlist(r'c:\new\9.3.1.txt'))
+
+"""
+Tudo Bom;Static and Ben El Tavori;5:13;
+I Gotta Feeling;The Black Eyed Peas;4:05;
+Instrumental;Unknown;4:15;
+Paradise;Coldplay;4:23;
+Where is the love?;The Black Eyed Peas;4:13;"""

@@ -1,0 +1,12 @@
+def seven_boom(end_number):
+    i = 0
+    a_list = []
+    while i < end_number + 1:
+        a_list.append(i)
+        if a_list[i] % 7 == 0 or '7' in str(a_list[i]):
+            a_list[i] = 'BOOM'
+        i += 1
+    return a_list
+
+
+print(seven_boom(17))

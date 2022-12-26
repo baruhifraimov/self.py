@@ -1,0 +1,30 @@
+def are_files_equal(file1, file2):
+    count = 0
+    # deploying a variable and zeroing it to use as a counter
+    text1 = open(file1, 'r')
+    # opening the file in read mode and inserting to text1
+    comp1 = text1.readlines()  # putting all text1 context into comp1 variable as a list
+    text2 = open(file2, 'r')
+    # opening the file in read mode and inserting to text2
+    comp2 = text2.readlines()  # putting all text2 context into comp2 variable as a list
+    text1.close()
+    text2.close()
+    # closing the files
+    if len(comp1) == len(comp2):
+        # checking files length
+        for i in range(len(comp1)):
+            if comp1[i] == comp2[i]:
+                count += 1
+                # adding up if list index are the same in both variables
+            else:
+                pass
+        if count == len(comp1):
+            # checks if the counter is the same as the length
+            return True
+        else:
+            return False
+    else:
+        return False
+
+
+print(are_files_equal(r"c:\new\vacation.txt", r"c:\new\work.txt"))

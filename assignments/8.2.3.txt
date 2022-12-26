@@ -1,0 +1,16 @@
+first_tuple = (1, 2, 3)
+second_tuple = (4, 5, 6)
+
+
+def mult_tuple(tuple1, tuple2):
+    new_tuple = ()
+    second_new_tuple = ()
+    for i in range(len(tuple1)):
+        for j in range(len(tuple2)):
+            new_tuple = tuple1[j], tuple2[i]
+            measured_tuple = (tuple2[i], tuple1[j])
+            second_new_tuple = second_new_tuple + (new_tuple, measured_tuple)
+    return second_new_tuple
+
+
+print(mult_tuple(first_tuple, second_tuple))

@@ -1,0 +1,13 @@
+def is_valid_input(letter_guessed):
+    """
+    :param: letter_guessed: guessing input string
+    :return: returns True if there is only alphabetic character else False
+    """
+    if len(letter_guessed) <= 1 and letter_guessed.isalnum() and not(letter_guessed.isdigit()):
+        return True
+    else:
+        return False
+
+
+x = input('Guess a letter: ')
+print(is_valid_input(x))

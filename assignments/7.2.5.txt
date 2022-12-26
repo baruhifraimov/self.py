@@ -1,0 +1,11 @@
+def sequence_del(my_str):
+    res = ''
+    for i in range(len(my_str)):
+        if my_str[i] != my_str[i - 1]:
+            res += my_str[i]
+    return res
+
+
+print(sequence_del("SSSSsssshhhh"))
+print(sequence_del("ppyyyyythhhhhooonnnnn"))
+print(sequence_del("Heeyyy   yyouuuu!!!"))

@@ -1,0 +1,11 @@
+temp = input('Insert the temperature you would like to convert:').lower()
+indicator = temp[-1]
+if indicator == 'f':
+    temp = temp.replace("f","")
+    celsius = (5*float(temp)-160)/9
+    print (celsius,'C')
+elif indicator == 'c':
+    temp  = temp.replace("c","")
+    fahrenheit = (5*float(temp)+(32*5))/5
+    print (fahrenheit ,'F')
+else: print('didnt recieved tempreture indication')

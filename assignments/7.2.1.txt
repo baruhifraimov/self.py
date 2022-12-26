@@ -1,0 +1,10 @@
+def is_greater(my_list, n):
+    a_list = []
+    for i in my_list:
+        if n < i:
+            a_list += [i]
+    return a_list
+
+
+result = is_greater([1, 30, 25, 60, 27, 28], 28)
+print(result)

@@ -1,0 +1,20 @@
+import calendar
+date= str(input('Enter a date: ').split('/'))
+day = int(date[2:4])
+month = int(date[8:10])
+year = int(date[13:-1].replace("'",""))
+day_declaration = calendar.weekday(year, month, day)
+if day_declaration == 6:
+    print ('Sunday')
+elif day_declaration == 0:
+    print('Monday')
+elif day_declaration == 1:
+    print('Tuesday')
+elif day_declaration == 2:
+    print('Wednesday')
+elif day_declaration == 3:
+    print('Thursday')
+elif day_declaration == 4:
+    print('Friday')
+elif day_declaration == 5:
+    print('Saturday')

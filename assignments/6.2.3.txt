@@ -1,0 +1,9 @@
+def format_list(my_list):
+    if len(my_list) % 2 == 0:
+        new_list = my_list[0:-1:2] + my_list[-1:]
+        new_list[-1] = 'and ' + new_list[-1]
+        return new_list
+
+
+a_list = ["hydrogen", "helium", "lithium", "beryllium", "boron", "magnesium"]
+print(', '.join(format_list(a_list)))

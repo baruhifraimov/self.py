@@ -1,0 +1,242 @@
+import random
+
+MAX_TRIES = 6
+DEFAULT_DICTIONARY = "dict.txt"
+WELCOME_SCREEN_FILE = "welcome_screen.txt"
+HANGMAN_PHOTOS = {
+    0: ["x-------x"],
+    1: ["x-------x",
+        "|        ",
+        "|        ",
+        "|        ",
+        "|        ",
+        "|        "],
+    2: ["x-------x",
+        "|       |",
+        "|       0",
+        "|        ",
+        "|        ",
+        "|        "],
+    3: ["x-------x",
+        "|       |",
+        "|       0",
+        "|       |",
+        "|        ",
+        "|        "],
+    4: ["x-------x",
+        "|       |",
+        "|       0",
+        "|      /|\\",
+        "|        ",
+        "|        "],
+    5: ["x-------x",
+        "|       |",
+        "|       0",
+        "|      /|\\",
+        "|      / ",
+        "|        "],
+    6: ["x-------x",
+        "|       |",
+        "|       0",
+        "|      /|\\",
+        "|      / \\",
+        "|        "]}
+
+
+def main():
+    # print welcome screen
+    text_file_path = input("Enter game file path: ")
+    with open(text_file_path + '\\' + WELCOME_SCREEN_FILE, 'r') as welcome_file:
+        print(welcome_file.read(), "\nWELCOME")
+    # 1. The program gets from the player:
+    # 1.1 file path in a form of a string
+    # 1.2.  an integer represents the index of a word in the file
+    dic_file = text_file_path + '\\' + DEFAULT_DICTIONARY
+    index_str = input("Enter index: ")
+    # * empty input = random index
+    try:
+        secret_word_index = int(index_str)
+    except:
+        secret_word_index = random.randint(1, 1000000)
+    print("1. Process input = {0} \nWord index: {1}".format(text_file_path, secret_word_index))
+    secret_word = choose_word(dic_file, secret_word_index)[1]
+    # 2.  The word that been selected with the index input will be inputted into the secret word variable
+    try:
+        secret_word = choose_word(dic_file, secret_word_index)[1]
+    except:
+        try:
+            text_file_path = DEFAULT_DICTIONARY
+            secret_word = choose_word(dic_file, secret_word_index)[1]
+        except:
+            print("Couldn't choose_word from {0} index {1}".format(dic_file, secret_word_index))
+
+    # print("2. Generate secret = {0}".format(secret_word))
+    # for debug proposes, remove '#'
+
+    old_letters_guessed = list()
+    print("\nLet's start!\n")
+    num_of_tries = 0
+
+    while num_of_tries <= MAX_TRIES:
+        # 3. The player will get the status of his progress in the game:
+        # 3.1. hangman
+        hangman_picture = print_hangman(num_of_tries)
+        print(hangman_picture, "\nHANGMAN")
+        # check end condition for losing the game
+        if num_of_tries == MAX_TRIES:
+            print("Lose condition met {0} = {1}".format(num_of_tries, MAX_TRIES))
+            # print "YOU LOST" and exit
+            print("\nYOU LOST")
+            break
+            # 3.1.1. the secret word
+        hidden_word = show_hidden_word(secret_word, old_letters_guessed)
+        print(hidden_word, "WORD")
+        # check end condition for losing the game
+        if check_win(secret_word, old_letters_guessed):
+            print("Win condition met - all secret word letters guessed")
+            # print "YOU WON" and exit
+            print("\nYOU WON")
+            break
+        # 3.2. The player will guess a letter (repeat until input is valid or until exceeds the value of MAX_TRIES)
+        while True:
+            guess_letter_input = input("Guess a letter:")
+            # 3.3.1 Check whether the input is valid
+            is_valid = try_update_letter_guessed(guess_letter_input, old_letters_guessed)
+            # 3.3.2 If the input is invalid print "X" and repeat 3.B.
+            if not is_valid:
+                print("X", "\nINVALID_INPUT")
+                continue
+            # 3.3.3 If the input is valid and incorrect - print ":(", increment number of tries and repeat 3.1.
+            elif guess_letter_input.lower() not in secret_word.lower():
+                num_of_tries += 1
+                print(":(\n tries {0}/{1}. Continue guessing".format(num_of_tries, MAX_TRIES))
+                break
+            else:
+                print("NICE! Continue guessing")
+                # repeat 3.1. without incrementing number of tries
+                break
+
+        # pre exit - print the secret word (for those who missed it)
+    print("The word was {0}".format(secret_word))
+
+
+def check_win(secret_word, letters_guessed):
+    """ check if letter guessed disclose the whole secret word
+            :param secret_word: secret string
+            :type secret_word:  str
+            :param letters_guessed: list of letters that were previously guessed
+            :type letters_guessed:  list
+            :return: Whether the secret word guessed
+            :rtype: bool
+        """
+    for secret_char in secret_word:
+        if not secret_char.lower() in letters_guessed:
+            return False
+    # all secret_chars were guessed
+    return True
+
+
+def show_hidden_word(secret_word, letters_guessed):
+    """ create a string, disclosing only the guessed letters out of the secret word and the gaps
+            :param secret_word: secret string
+            :type secret_word:  str
+            :param letters_guessed: list of letters that were previously guessed
+            :type letters_guessed:  list
+            :return: string partially disclosing the secret word and underlines in the gaps
+            :rtype: str
+        """
+    #  make out_str as a string
+    out_str = ""
+    for secret_char in secret_word:
+        #  check if the letter is in the list letters_guessed
+        if secret_char.lower() in letters_guessed:
+            #  if True, add the letter and add space
+            out_str += secret_char + " "
+        else:
+            #  if False, add the letter and add '_ '
+            out_str += "_ "
+    return out_str
+
+
+def check_valid_input(letter_guessed, old_letters_guessed):
+    """
+    :param: letter_guessed: str
+    :param: old_letters_guessed: list
+    :return: checks if the word is located in the
+    list, or is a special keyword or if it accedes beyond or equal to 2 letters
+    """
+    if letter_guessed.isalpha() == 1 and len(letter_guessed) == 1 and (letter_guessed in old_letters_guessed) == 0:
+        return True
+    elif letter_guessed.isalpha() == 0 or len(letter_guessed) >= 2 or (letter_guessed in old_letters_guessed) == 1:
+        print("THE INPUT DOESN'T MEET THE CONDITIONS")
+        return False
+
+
+def join_letter(list_join):
+    #  adds the arrow symbol with a space to the string
+    combination_list = ' -> '.join(list_join)
+    return combination_list
+
+
+def try_update_letter_guessed(input_string, old_letter_guessed):
+    """ update letter_guessed list if input is valid (see is_valid_letter_input)
+        :param input_string: input string to be validated
+        :type input_string: str
+        :param old_letter_guessed: list of letters that were previously guessed
+        :type old_letter_guessed: list
+        :return: True if list updated
+        :type: bool
+    """
+    lowered_input = input_string.lower()
+    if check_valid_input(lowered_input, old_letter_guessed):
+        old_letter_guessed += lowered_input
+        return True
+    else:
+        print('\n ', join_letter(sorted(old_letter_guessed, key=str)))
+        return False
+
+
+def choose_word(file_path, index):
+    """ return the number of unique words AND #n__th word in a text file containing words only
+        :param file_path: name of text file containing lists of words (may include repetitions)
+        :type file_path:  string
+        :param index: index of the word in a list of unique words in the file [1,n_words]
+        :type index:  int
+        :return: number of unique words in the file + the chosen word
+        :rtype: tuple
+        """
+    # use a map's key uniqueness to count only unique words
+    word_map = {}
+
+    # open the given text file
+    with open(file_path, 'r') as input_file:
+        # get the list of words in the file
+        word_list = input_file.read().split()
+        for word in word_list:
+            word_map[word] = 0  # the key is important, value is arbitrary an unused
+    # convert the map keys to a list
+    unique_word_list = list(word_map.keys())
+    # use the index according to exercise definition [1-n_words] with wraparound
+    index = (index - 1) % len(word_list)
+    # return the requested word
+    return len(unique_word_list), word_list[index]
+
+
+def print_hangman(num_of_tries):
+    """
+       return a picture describing number of tries
+       :param num_of_tries: number of wrong tries
+       :type num_of_tries: int
+       :return: a string with an ascii picture
+       which describes the number of tries
+       :rtype: str
+       """
+
+    output = ''
+    for line in HANGMAN_PHOTOS[num_of_tries]:
+        output += line + "\n"
+    return output
+
+
+if __name__ == "__main__":
+    main()
